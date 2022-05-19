@@ -13,13 +13,12 @@ import ReactDOM from 'react-dom';
 // import { RealExampleRef } from './components/04-useRef/RealExampleRef';
 // import { Layout } from './components/05-useLayoutEffect/Layout';
 // import {Padre} from './components/07-tarea-memo/Padre';
-import './components/08-useReducer/intro-reducer';
-
+// import './components/08-useReducer/intro-reducer';
+import { TodoApp } from './components/08-useReducer/TodoApp';
 
 ReactDOM.render(
   <>
-    <h1>Hola Mundo</h1>
-    
+    <TodoApp />
   </>,
   document.getElementById('root')
 );
