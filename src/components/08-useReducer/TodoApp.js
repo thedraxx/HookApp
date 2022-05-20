@@ -1,7 +1,7 @@
 import React, { useEffect, useReducer } from 'react';
-import { useForm } from '../../hooks/useForm';
 import { todoReducer } from './todoReducer';
 import { TodoList } from './TodoList';
+import { TodoAdd } from './TodoAdd';
 import './Styles.css';
 
 const init = () => {
@@ -10,12 +10,8 @@ const init = () => {
 }
 
 export const TodoApp = () => {
-
     const [todos, dispatch] = useReducer(todoReducer, [], init);
-    const [{ description }, handleInputChange, reset] = useForm({
-        description: ""
-    });
-
+ 
     useEffect(() => {
         localStorage.setItem('todos', JSON.stringify(todos));
     }, [todos])
@@ -39,27 +35,15 @@ export const TodoApp = () => {
         dispatch(action);
     }
 
-    //Agrega TODO
-    const handleSubmit = (e) => {
-        e.preventDefault();
-
-        if (description.trim().length <= 1) {
-            return;
-        }
-
-        const newTodo = {
-            id: new Date().getTime(),
-            desc: description,
-            done: true,
-        }
+    //Conectado en TODOADD
+    const handleAddTodo = (newTodo) => {
         const action = {
             type: "ADD_TODO",
             payload: newTodo
         }
-        dispatch(action);
-        reset();
-    }
 
+        dispatch(action);
+    }
 
     return (
         <div>
@@ -76,24 +60,7 @@ export const TodoApp = () => {
                     />
                 </div>
                 <div className='col-5'>
-                    <h4>Agregar TODO</h4>
-                    <hr />
-                    <form onSubmit={handleSubmit}>
-                        <input
-                            className="form-control"
-                            type="text"
-                            name="description"
-                            placeholder='aprender...'
-                            autoComplete='off'
-                            value={description}
-                            onChange={handleInputChange}>
-                        </input>
-                        <button
-                            type='submit'
-                            className='btn btn-outline-primary mt-1 btn-block'>
-                            Agregar
-                        </button>
-                    </form>
+                   <TodoAdd handleAddTodo={handleAddTodo}/>
                 </div>
             </div>
         </div>
