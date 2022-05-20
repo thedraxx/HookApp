@@ -1,7 +1,8 @@
-import React, { useEffect, useReducer } from 'react'
-import { useForm } from '../../hooks/useForm'
-import './Styles.css'
-import { todoReducer } from './todoReducer'
+import React, { useEffect, useReducer } from 'react';
+import { useForm } from '../../hooks/useForm';
+import { todoReducer } from './todoReducer';
+import { TodoList } from './TodoList';
+import './Styles.css';
 
 const init = () => {
     //Si los datos existen en el localstorage traelos y sino returna un arreglo vacio
@@ -59,6 +60,7 @@ export const TodoApp = () => {
         reset();
     }
 
+
     return (
         <div>
             <h1>Hola Mundo ({todos.length})</h1>
@@ -66,29 +68,17 @@ export const TodoApp = () => {
 
             <div className='row'>
                 <div className='col-7'>
-                    <ul className="list-group list-group-flush">
-                        {
-                            todos.map((todo, i) => (
-                                <li key={todo.id} className="list-group-item">
-
-                                    <p className={`${todo.done && 'complete'}`}
-                                        onClick={() => handleToggle(todo.id)}
-                                    >
-                                        {i + 1}  {todo.desc}
-                                    </p>
-                                    <button className='btn btn-danger' onClick={() => handleDelete(todo.id)} >
-                                        Borrar
-                                    </button>
-                                </li>
-                            ))
-                        }
-                    </ul>
+                    {/* TodoList, */}
+                    <TodoList
+                        todos={todos}
+                        handleToggle={handleToggle}
+                        handleDelete={handleDelete}
+                    />
                 </div>
                 <div className='col-5'>
                     <h4>Agregar TODO</h4>
                     <hr />
                     <form onSubmit={handleSubmit}>
-
                         <input
                             className="form-control"
                             type="text"
@@ -98,7 +88,6 @@ export const TodoApp = () => {
                             value={description}
                             onChange={handleInputChange}>
                         </input>
-
                         <button
                             type='submit'
                             className='btn btn-outline-primary mt-1 btn-block'>
