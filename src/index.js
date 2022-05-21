@@ -15,12 +15,17 @@ import ReactDOM from 'react-dom';
 // import {Padre} from './components/07-tarea-memo/Padre';
 // import './components/08-useReducer/intro-reducer';
 // import { TodoApp } from './components/08-useReducer/TodoApp';
-import { MainApp } from './components/09-useContext/MainApp';
+import { BrowserRouter } from "react-router-dom";
+import { AppRouter } from './components/09-useContext/AppRouter';
+import { NavBar } from './components/09-useContext/NavBar';
 
 ReactDOM.render(
-  <>
-    <MainApp />
-  </>,
+  <div>
+    <BrowserRouter>
+      <NavBar />
+      <AppRouter />
+    </BrowserRouter>
+  </div>,
   document.getElementById('root')
 );
 
