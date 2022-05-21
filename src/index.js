@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import ReactDOM from 'react-dom';
 // import { CallBackHook } from './components/06-memos/CallBackHook';
 // import { MemoHook } from './components/06-memos/MemoHook';
@@ -17,14 +17,16 @@ import ReactDOM from 'react-dom';
 // import { TodoApp } from './components/08-useReducer/TodoApp';
 import { BrowserRouter } from "react-router-dom";
 import { AppRouter } from './components/09-useContext/AppRouter';
+import { MainApp } from './components/09-useContext/MainApp';
 import { NavBar } from './components/09-useContext/NavBar';
+
 
 ReactDOM.render(
   <div>
-    <BrowserRouter>
-      <NavBar />
-      <AppRouter />
-    </BrowserRouter>
+      <BrowserRouter>
+        <NavBar />
+        <MainApp />
+      </BrowserRouter>
   </div>,
   document.getElementById('root')
 );
